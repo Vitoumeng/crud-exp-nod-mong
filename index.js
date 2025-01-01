@@ -3,7 +3,11 @@ const mongoose = require("mongoose");
 const Product = require("./model/product.model.js");
 const app = express();
 
+// accept json data
 app.use(express.json());
+
+// accept form url endocding data
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
   // when it get '/' it will send this message
