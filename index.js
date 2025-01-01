@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
   res.send("Hello from node New API");
 });
 
-// get product
+// get all product
 app.get("/api/products", async (req, res) => {
   try {
     const products = await Product.find({});
@@ -20,7 +20,7 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
-//get product by id
+// get product by id
 app.get("/api/product/:id", async (req, res) => {
   try {
     const { id } = req.params;
