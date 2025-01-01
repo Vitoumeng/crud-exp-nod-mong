@@ -7,6 +7,12 @@ app.get("/", (req, res) => {
   res.send("Hello from node New API");
 });
 
+// post method
+app.post("/api/products", (req, res) => {
+  console.log(req.body);
+  res.send(req.body);
+});
+
 mongoose
   .connect(
     "mongodb+srv://tuu18:v%21T0u%402025@backenddb.cbfsz.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDB",
