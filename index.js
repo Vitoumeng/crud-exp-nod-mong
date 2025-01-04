@@ -49,17 +49,6 @@ app.delete("/api/product/:id", async (req, res) => {
   }
 });
 
-// post method / create product
-app.post("/api/products", async (req, res) => {
-  try {
-    const product = await Product.create(req.body);
-    res.status(200).json(product);
-  } catch (error) {
-    // send message error as json
-    res.status(500).json({ message: error.message });
-  }
-});
-
 mongoose
   .connect(
     "mongodb+srv://tuu18:v%21T0u%402025@backenddb.cbfsz.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDB"
