@@ -1,28 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Product = require("./model/product.model.js");
 const app = express();
 
+// Use route
+const productRoute = require("./routes/product.route");
+
+// ==========< middleware >============
 // accept json data
 app.use(express.json());
 
 // accept form url endocding data
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  // when it get '/' it will send this message
-  res.send("Hello from node New API");
-});
-
-// get all product
-app.get("/api/products", async (req, res) => {
-  try {
-    const products = await Product.find({});
-    res.status(200).json(products);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// ==========< routes >============
+app.use("/api/products/", productRoute);
 
 // get product by id
 app.get("/api/product/:id", async (req, res) => {
@@ -82,8 +73,7 @@ app.post("/api/products", async (req, res) => {
 
 mongoose
   .connect(
-    "mongodb+srv://tuu18:v%21T0u%402025@backenddb.cbfsz.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDB",
-    { useNewUrlParser: true, useUnifiedTopology: true }
+    "mongodb+srv://tuu18:v%21T0u%402025@backenddb.cbfsz.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDB"
   )
   .then(() => {
     app.listen(3000, () => {
